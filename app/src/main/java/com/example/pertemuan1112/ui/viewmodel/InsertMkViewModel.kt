@@ -22,6 +22,17 @@ fun MataKuliahEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
 
 data class MkUiState(
     val mataKuliahEvent: MataKuliahEvent = MataKuliahEvent(),
-    val isEntryValid: FormErrorState = FormErrorState(),
+    val isEntryValid: FormErrorStateMk = FormErrorStateMk(),
     val snackBarMessage: String? = null,
 )
+
+data class FormErrorStateMk(
+    val kode: String? = null,
+    val nama: String? = null,
+    val sks: String? = null,
+    val semester: String? = null,
+    val jenis: String? = null,
+    val dosenPengampu: String? = null
+){
+
+}
