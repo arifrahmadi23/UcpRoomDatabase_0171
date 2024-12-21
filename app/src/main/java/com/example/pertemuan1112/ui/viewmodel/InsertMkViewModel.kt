@@ -60,10 +60,6 @@ class InsertMkViewModel(private val repositoryMk: RepositoryMk
     }
 }
 
-
-
-
-
 data class MataKuliahEvent(
     val kode: String = "",
     val nama: String = "",
