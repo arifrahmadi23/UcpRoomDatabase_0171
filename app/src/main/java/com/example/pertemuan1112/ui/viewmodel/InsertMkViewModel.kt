@@ -23,10 +23,10 @@ class InsertMkViewModel(private val repositoryMk: RepositoryMk
         val errorState = FormErrorStateMk(
             kode = if (event.kode.isNotEmpty()) null else "Kode tidak boleh kosong",
             nama = if (event.nama.isNotEmpty()) null else  "Nama tidak boleh kosong",
-            sks = if (event.sks.isNotEmpty()) null else "Jenis Kelamin tidak boleh kosong",
-            semester = if (event.semester.isNotEmpty()) null else "Alamat tidak boleh kosong",
-            jenis = if (event.jenis.isNotEmpty()) null else "Kelas tidak boleh kosong",
-            dosenPengampu = if (event.dosenPengampu.isNotEmpty()) null else "Angkatan tidak boleh kosong"
+            sks = if (event.sks.isNotEmpty()) null else "SKS tidak boleh kosong",
+            semester = if (event.semester.isNotEmpty()) null else "Semester tidak boleh kosong",
+            jenis = if (event.jenis.isNotEmpty()) null else "Jenis tidak boleh kosong",
+            dosenPengampu = if (event.dosenPengampu.isNotEmpty()) null else "Dosen Pengampu tidak boleh kosong"
         )
         uiState = uiState.copy(isEntryValid = errorState)
         return errorState.isValid()
