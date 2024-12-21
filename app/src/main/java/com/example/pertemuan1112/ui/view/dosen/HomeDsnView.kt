@@ -68,7 +68,7 @@ fun HomeDsnView(
             ){
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Tambah Mahasiswa",
+                    contentDescription = "Tambah Dosen",
                 )
             }
         }
