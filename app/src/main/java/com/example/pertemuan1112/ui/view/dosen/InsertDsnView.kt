@@ -17,9 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.example.pertemuan1112.ui.navigation.AlamatNavigasi
 import com.example.pertemuan1112.ui.viewmodel.DosenEvent
 import com.example.pertemuan1112.ui.viewmodel.DsnUiState
 import com.example.pertemuan1112.ui.viewmodel.FormErrorState
+
+object DestinasiInsertDosen: AlamatNavigasi {
+    override val route: String = "insert_dsn"
+
+}
 
 @Composable
 fun InsertBodyDsn(
@@ -47,8 +53,6 @@ fun InsertBodyDsn(
         }
     }
 }
-
-
 
 @Composable
 fun FormDosen(
