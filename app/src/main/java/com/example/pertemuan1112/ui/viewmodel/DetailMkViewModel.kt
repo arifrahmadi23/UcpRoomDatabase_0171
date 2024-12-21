@@ -1,6 +1,19 @@
 package com.example.pertemuan1112.ui.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import com.example.pertemuan1112.data.entity.MataKuliah
+import com.example.pertemuan1112.repository.RepositoryMk
+
+class DetailMkViewModel(
+    savedStateHandle: SavedStateHandle,
+    private val repositoryMk: RepositoryMk,
+) : ViewModel(){
+    private val _kode: String = checkNotNull(savedStateHandle[DestinasiDetail.kode])
+}
+
+
+
 
 data class DetailUiStateMk(
     val detailUiEventMk: MataKuliahEvent = MataKuliahEvent(),
