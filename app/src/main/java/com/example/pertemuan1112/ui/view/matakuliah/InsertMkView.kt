@@ -20,9 +20,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pertemuan1112.ui.navigation.AlamatNavigasi
 import com.example.pertemuan1112.ui.viewmodel.FormErrorStateMk
 import com.example.pertemuan1112.ui.viewmodel.MataKuliahEvent
 import com.example.pertemuan1112.ui.viewmodel.MkUiState
+
+object DestinasiInsertMk : AlamatNavigasi {
+    override val route: String = "insert_mk"
+}
+
+
+
 
 @Composable
 fun InsertBodyMhs(
