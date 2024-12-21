@@ -1,5 +1,7 @@
 package com.example.pertemuan1112.ui.viewmodel
 
+import com.example.pertemuan1112.data.entity.MataKuliah
+
 data class DetailUiStateMk(
     val detailUiEventMk: MataKuliahEvent = MataKuliahEvent(),
     val isLoading: Boolean = false,
@@ -11,4 +13,15 @@ data class DetailUiStateMk(
 
     val isUiEventNotEmpty: Boolean
         get() = detailUiEventMk != MataKuliahEvent()
+}
+
+fun MataKuliah.toDetailUiEvent(): MataKuliahEvent {
+    return MataKuliahEvent(
+        kode = kode,
+        nama = nama,
+        sks = sks,
+        semester = semester,
+        jenis = jenis,
+        dosenPengampu = dosenPengampu
+    )
 }
