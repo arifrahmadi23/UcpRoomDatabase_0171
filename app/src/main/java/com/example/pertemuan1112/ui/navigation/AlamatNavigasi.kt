@@ -7,3 +7,9 @@ interface AlamatNavigasi {
 object DestinasiHomeDosen : AlamatNavigasi{
     override val route = "home_dsn"
 }
+
+object DestinasiDetailMk : AlamatNavigasi{
+    override val route = "detail_mk"
+        const val KODE = "kode"
+    val routesWithArg = "$route/{$KODE}"
+}
