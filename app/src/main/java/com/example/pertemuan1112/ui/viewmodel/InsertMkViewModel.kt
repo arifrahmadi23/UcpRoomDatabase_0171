@@ -34,5 +34,8 @@ data class FormErrorStateMk(
     val jenis: String? = null,
     val dosenPengampu: String? = null
 ){
-
+    fun isValid(): Boolean{
+        return kode == null && nama == null && sks == null && semester == null &&
+                jenis == null && dosenPengampu == null
+    }
 }
