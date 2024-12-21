@@ -19,3 +19,9 @@ fun MataKuliahEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
     jenis = jenis,
     dosenPengampu = dosenPengampu
 )
+
+data class MkUiState(
+    val mataKuliahEvent: MataKuliahEvent = MataKuliahEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage: String? = null,
+)
