@@ -5,20 +5,49 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pertemuan1112.data.entity.Dosen
 import com.example.pertemuan1112.data.entity.MataKuliah
+import com.example.pertemuan1112.repository.RepositoryDsn
 import com.example.pertemuan1112.repository.RepositoryMk
 import kotlinx.coroutines.launch
 
-class InsertMkViewModel(private val repositoryMk: RepositoryMk
+class InsertMkViewModel(private val repositoryMk: RepositoryMk, private val repositoryDsn: RepositoryDsn
 ) : ViewModel(){
     var uiState by mutableStateOf(MkUiState())
+
+    var mataKuliahList by mutableStateOf<List<MataKuliah>>(emptyList())
+        private set
+
+    var dosenList by mutableStateOf<List<Dosen>>(emptyList())
+        private set
+
+    private fun updateUiState() {
+        uiState = uiState.copy(dosenList = dosenList)
+    }
+
+    init {
+        viewModelScope.launch {
+            repositoryMk.getAllMk().collect { mkList ->
+                this@InsertMkViewModel.mataKuliahList = mkList
+            }
+        }
+        viewModelScope.launch {
+            repositoryDsn.getAllDsn().collect { dosenList ->
+                this@InsertMkViewModel.dosenList = dosenList
+                updateUiState()
+            }
+        }
+    }
+
+
+
 
     fun updateState (mataKuliahEvent: MataKuliahEvent){
         uiState = uiState.copy(
             mataKuliahEvent = mataKuliahEvent,
         )
     }
-    private fun validateFields(): Boolean {
+    fun validateFieldsMk(): Boolean {
         val event = uiState.mataKuliahEvent
         val errorState = FormErrorStateMk(
             kode = if (event.kode.isNotEmpty()) null else "Kode tidak boleh kosong",
@@ -33,7 +62,7 @@ class InsertMkViewModel(private val repositoryMk: RepositoryMk
     }
     fun saveData(){
         val currentEvent = uiState.mataKuliahEvent
-        if (validateFields()) {
+        if (validateFieldsMk()) {
             viewModelScope.launch {
                 try {
                     repositoryMk.insertMataKuliah(currentEvent.toMataKuliahEntity())
@@ -82,6 +111,7 @@ data class MkUiState(
     val mataKuliahEvent: MataKuliahEvent = MataKuliahEvent(),
     val isEntryValid: FormErrorStateMk = FormErrorStateMk(),
     val snackBarMessage: String? = null,
+    val dosenList: List<Dosen> = emptyList()
 )
 
 data class FormErrorStateMk(
