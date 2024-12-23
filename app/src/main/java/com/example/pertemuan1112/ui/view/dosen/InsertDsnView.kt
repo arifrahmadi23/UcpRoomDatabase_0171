@@ -91,6 +91,7 @@ fun InsertDsnView(
                         viewModel.saveData()
                         delay(600)
                         withContext(Dispatchers.Main){
+                            onNavigate()
                         }
                     }
                 }
