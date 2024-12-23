@@ -60,6 +60,11 @@ fun InsertDsnView(
     }
 
     Scaffold (
+        topBar = {CustomTopAppBar(
+            onBack = onBack,
+            showBackButton = true,
+            judul = "Tambah Dosen"
+        )},
         modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) })
     {
@@ -70,11 +75,7 @@ fun InsertDsnView(
                 .padding(padding)
                 .padding(16.dp)
         ){
-            CustomTopAppBar(
-                onBack = onBack,
-                showBackButton = true,
-                judul = "Tambah Mahasiswa"
-            )
+
             // Isi Body
             InsertBodyDsn(
                 uiState = uiState,
