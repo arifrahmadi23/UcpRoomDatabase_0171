@@ -68,6 +68,7 @@ fun UpdateMkView(
         ){
             InsertBodyMk(
                 uiState = uiState,
+                dosenList = uiState.dosenList,
                 onValueChange = { updateEvent ->
                     viewModel.updateState(updateEvent)
                 },
@@ -81,8 +82,8 @@ fun UpdateMkView(
                             }
                         }
                     }
+                },
 
-                }
             )
         }
     }

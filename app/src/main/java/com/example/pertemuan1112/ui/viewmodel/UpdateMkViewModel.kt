@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pertemuan1112.data.entity.Dosen
 import com.example.pertemuan1112.data.entity.MataKuliah
+import com.example.pertemuan1112.repository.RepositoryDsn
 import com.example.pertemuan1112.repository.RepositoryMk
 import com.example.pertemuan1112.ui.navigation.DestinasiUpdateMk
 import kotlinx.coroutines.flow.filterNotNull
@@ -15,20 +17,28 @@ import kotlinx.coroutines.launch
 
 class UpdateMkViewModel(
     savedStateHandle: SavedStateHandle,
-    private val repositoryMk: RepositoryMk
+    private val repositoryMk: RepositoryMk,
+    private val repositoryDsn: RepositoryDsn
 ): ViewModel(){
 
     var updateUIStateMk by mutableStateOf(MkUiState())
+        private set
+
+    var dosenList by mutableStateOf<List<Dosen>>(emptyList())
         private set
 
     private val _kode: String = checkNotNull(savedStateHandle[DestinasiUpdateMk.KODE])
 
     init {
         viewModelScope.launch {
-            updateUIStateMk = repositoryMk.getMk(_kode)
+            val dosenListFromRepo = repositoryDsn.getAllDsn().first()
+            updateUIStateMk = repositoryMk
+                .getMk(_kode)
                 .filterNotNull()
                 .first()
                 .toUiStateMk()
+            dosenList = dosenListFromRepo
+            updateUIStateMk = updateUIStateMk.copy(dosenList = dosenList)
         }
     }
 
