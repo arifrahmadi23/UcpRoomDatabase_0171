@@ -78,6 +78,11 @@ fun InsertMkView(
     }
 
     Scaffold (
+        topBar = {CustomTopAppBar(
+            onBack = onBack,
+            showBackButton = true,
+            judul = "Tambah Matakuliah"
+        )},
         modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) } // Tempatkan snackbar di scaffold
     ){ padding ->
@@ -87,11 +92,7 @@ fun InsertMkView(
                 .padding(padding)
                 .padding(16.dp)
         ) {
-            CustomTopAppBar(
-                onBack = onBack,
-                showBackButton = true,
-                judul = "Tambah Matakuliah"
-            )
+
             // isi Body
             InsertBodyMk (
                 uiState = uiState,
