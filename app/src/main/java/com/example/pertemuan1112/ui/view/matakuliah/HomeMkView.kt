@@ -45,6 +45,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeMkView(
     viewModel: HomeMkViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onBack: () -> Unit,
     onAddMk: () -> Unit = { },
     onDetailClick: (String) -> Unit = { },
     modifier: Modifier = Modifier
@@ -54,8 +55,8 @@ fun HomeMkView(
         topBar = {
             CustomTopAppBar(
                 judul = "Daftar MataKuliah",
-                showBackButton = false,
-                onBack = { },
+                showBackButton = true,
+                onBack = onBack,
                 modifier = modifier
 
             )
