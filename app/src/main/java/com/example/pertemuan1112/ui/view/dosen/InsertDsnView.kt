@@ -33,7 +33,10 @@ import com.example.pertemuan1112.ui.viewmodel.DsnUiState
 import com.example.pertemuan1112.ui.viewmodel.FormErrorState
 import com.example.pertemuan1112.ui.viewmodel.InsertDsnViewModel
 import com.example.pertemuan1112.ui.viewmodel.PenyediaViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object DestinasiInsertDosen: AlamatNavigasi {
     override val route: String = "insert_dsn"
@@ -84,14 +87,16 @@ fun InsertDsnView(
                 },
                 onClick = {
                     coroutineScope.launch {
+                        if (viewModel.validateFields())
                         viewModel.saveData()
+                        delay(600)
+                        withContext(Dispatchers.Main){
+                        }
                     }
-                    onNavigate()
                 }
             )
         }
     }
-
 }
 
 @Composable

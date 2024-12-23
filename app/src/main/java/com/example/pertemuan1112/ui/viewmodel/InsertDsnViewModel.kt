@@ -22,7 +22,7 @@ class InsertDsnViewModel(private val repositoryDsn: RepositoryDsn
     }
 
     // Validsai data input pengguna
-    private fun validateFields(): Boolean{
+    fun validateFields(): Boolean{
         val event = uiState.dosenEvent
         val errorState = FormErrorState(
             nidn = if (event.nidn.isNotEmpty()) null else "NIDN tidak boleh kosong",
