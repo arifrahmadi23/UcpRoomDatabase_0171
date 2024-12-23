@@ -1,6 +1,7 @@
 package com.example.pertemuan1112.ui.viewmodel
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -16,6 +17,31 @@ object PenyediaViewModel {
         }
         initializer {
             HomeDsnViewModel(
+                kuliahApp().containerApp.RepositoryDsn
+            )
+        }
+        initializer {
+            HomeMkViewModel(
+                kuliahApp().containerApp.RepositoryMk
+            )
+        }
+        initializer {
+            InsertMkViewModel(
+                kuliahApp().containerApp.RepositoryMk,
+                kuliahApp().containerApp.RepositoryDsn
+
+            )
+        }
+        initializer {
+            DetailMkViewModel(
+                createSavedStateHandle(),
+                kuliahApp().containerApp.RepositoryMk
+            )
+        }
+        initializer {
+            UpdateMkViewModel(
+                createSavedStateHandle(),
+                kuliahApp().containerApp.RepositoryMk,
                 kuliahApp().containerApp.RepositoryDsn
             )
         }
